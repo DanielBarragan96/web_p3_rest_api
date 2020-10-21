@@ -24,7 +24,7 @@ router.post('/', (req, res) => {
             atributos_faltantes += "Falta fecha. ";
         if (req.body["sexo"] == null)
             atributos_faltantes += "Falta sexo. ";
-        else if(req.body["sexo"] != "H" && req.body["sexo"] != "M") {
+        else if (req.body["sexo"] != "H" && req.body["sexo"] != "M") {
             atributos_faltantes += "Sexo inválido. ";
         }
 
@@ -58,8 +58,18 @@ router.post('/', (req, res) => {
 
 router.get('/', (req, res) => {
     let users = userController.getList();
-    // let userList = users.map((element) => {return element.token;})
-    res.status(201).send(JSON.stringify(users));
+
+
+
+    //Only return users names, last names and email, using map
+    let userList = users.map((element) => {
+        return {
+            nombre: element.nombre,
+            apellidos: element.apellidos,
+            email: element.email
+        };
+    });
+    res.status(200).send(JSON.stringify(userList));
 })
 
 module.exports = router;
