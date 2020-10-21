@@ -8,7 +8,7 @@ router.post('/', (req, res) => {
     let atributos_faltantes = "";
     //Verify that the body isn't empty
     if (req.body.constructor === Object && Object.keys(req.body).length === 0)
-        res.status(201).send("Sin usuario");
+        res.send("Sin usuario");
     else {
         //Verify that all attributes are passed
         if (req.body["nombre"] == null)
@@ -27,7 +27,7 @@ router.post('/', (req, res) => {
             atributos_faltantes += "Falta uid. ";
         //If there are missing attributes, indicate with error code and missing attributes
         if (atributos_faltantes.length > 1) {
-            res.status(401).send(atributos_faltantes);
+            res.status(400).send(atributos_faltantes);
         } else {
             //Verify that the user isn't in the data base
             let uniqueUser = userController.getUniqueUser(req.body["nombre"], req.body["apellidos"], req.body["email"]);
