@@ -57,9 +57,15 @@ router.post('/', (req, res) => {
 })
 
 router.get('/', (req, res) => {
+    //Get users
     let users = userController.getList();
+    
+    //Get parameters
     const name = req.query.name;
     const lastname = req.query.lastname;
+    const page = req.query.page;
+    const limit = req.query.limit;
+    
     if(name !== undefined)
         users = users.filter(element => element.nombre.toUpperCase().includes(name.toUpperCase()));
     if(lastname !== undefined)
