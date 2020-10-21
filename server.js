@@ -1,5 +1,7 @@
 const express = require('express');
 const app = express();
+const UserController = require('./controllers/usersController');
+const userController = new UserController();
 
 const PORT = process.env.PORT || 3000;
 
@@ -10,18 +12,30 @@ app.use(express.urlencoded({
 }));
 
 //Middleware
-function log(req, res, next) {
-    console.log(`${req.method} ${req.originalUrl}: ${new Date(Date.now()).toString()}`);
-    //obtener algún header
-    console.log("Content-Type", req.get('Content-Type'));
-    next(); //ejecuta la siguiente función 
+function authentication(req, res, next) {
+    //Get x-auth-user header
+    let token = req.get('x-auth-user');
+    //If header is missing
+    if (token === undefined) {
+        res.status(401).send("Missing x-auth-user header");
+    } else {
+        //Get user id using the token
+        let id = token.split("-")[1];
+        //Get user using id
+        let user = userController.getUser(parseInt(id));
+        //If the token is valid proceed
+        if (user !== undefined && user.token == token) {
+            next();
+        } else
+            res.status(401).send("Invalid x-auth-user header");
+    }
 }
 
 app.get('/', (req, res) => {
     res.send('Users app práctica 3');
 })
 
-// app.use(log);
+app.use(authentication);
 
 //Router
 const usersRouter = require('./routes/usersRouter');
