@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const UserController = require('../controllers/usersController');
 const userController = new UserController();
+const randomize = require('randomatic');
 
 router.post('/', (req, res) => {
     let atributos_faltantes = "";
@@ -23,8 +24,10 @@ router.post('/', (req, res) => {
             atributos_faltantes += "Falta fecha. ";
         if (req.body["sexo"] == null)
             atributos_faltantes += "Falta sexo. ";
-        if (req.body["uid"] == null)
-            atributos_faltantes += "Falta uid. ";
+        else if(req.body["sexo"] != "H" && req.body["sexo"] != "M") {
+            atributos_faltantes += "Sexo inválido. ";
+        }
+
         //If there are missing attributes, indicate with error code and missing attributes
         if (atributos_faltantes.length > 1) {
             res.status(400).send(atributos_faltantes);
@@ -36,7 +39,16 @@ router.post('/', (req, res) => {
                 res.status(401).send("Ese contacto ya existe");
             else {
                 //Insert new user in data base
-                let newUser = userController.insertUser(req.body);
+                let sentUser = req.body;
+                //Validate that uid is defined
+                if (sentUser.uid === undefined) {
+                    sentUser.uid = userController.generateId();
+                }
+                //Validate that token is defined
+                if (sentUser.token === undefined) {
+                    sentUser.token = randomize('Aa0', '10') + "-" + sentUser.uid;
+                }
+                let newUser = userController.insertUser(sentUser);
                 //Return success code and the new user in the body
                 res.status(201).send(JSON.stringify(newUser));
             }
@@ -44,6 +56,10 @@ router.post('/', (req, res) => {
     }
 })
 
-router.get('/', (req, res) => {})
+router.get('/', (req, res) => {
+    let users = userController.getList();
+    // let userList = users.map((element) => {return element.token;})
+    res.status(201).send(JSON.stringify(users));
+})
 
 module.exports = router;
