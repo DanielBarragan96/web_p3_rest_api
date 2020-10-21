@@ -6,8 +6,9 @@ const userController = new UserController();
 const randomize = require('randomatic');
 
 router.post('/', (req, res) => {
+    //Verify that the body isn't empty
     if ((req.body.constructor === Object && Object.keys(req.body).length === 0))
-        res.status(201).send("Sin usuario");
+        res.send("Empty body");
     else {
         let atributos_faltantes = "";
         //Verify that all attributes are passed
@@ -20,7 +21,21 @@ router.post('/', (req, res) => {
         if (atributos_faltantes.length > 1) {
             res.status(400).send(atributos_faltantes);
         } else {
-
+            //Find user in db with email and password
+            let user = userController.getUserByCredentials(req.body["email"], req.body["password"]);
+            if (user !== undefined) {
+                if(user.token === undefined) {
+                    //Generate user token if it wasn't defined
+                    user.token = randomize('Aa0','10') + "-" + user.uid;
+                    //Update user
+                    userController.updateUser(user);
+                }
+                //Return user
+                res.status(200).send(user);
+            }
+            //Return error if user couldn't be found
+            else
+                res.status(401).send("User isn't in db");
         }
     }
 })

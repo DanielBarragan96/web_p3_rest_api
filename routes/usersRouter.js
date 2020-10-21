@@ -8,7 +8,7 @@ router.post('/', (req, res) => {
     let atributos_faltantes = "";
     //Verify that the body isn't empty
     if (req.body.constructor === Object && Object.keys(req.body).length === 0)
-        res.send("Sin usuario");
+        res.send("Empty body");
     else {
         //Verify that all attributes are passed
         if (req.body["nombre"] == null)

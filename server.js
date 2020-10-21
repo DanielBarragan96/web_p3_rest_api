@@ -21,11 +21,13 @@ app.get('/', (req, res) => {
     res.send('Users app práctica 3');
 })
 
-app.use(log);
+// app.use(log);
 
 //Router
 const usersRouter = require('./routes/usersRouter');
 app.use('/api/users/', usersRouter);
+const loginRouter = require('./routes/loginRouter');
+app.use('/api/login/', loginRouter);
 
 app.listen(PORT, () => {
     console.log(`Example app listening at http://localhost:${PORT}`)
