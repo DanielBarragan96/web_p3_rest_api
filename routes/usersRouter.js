@@ -58,8 +58,12 @@ router.post('/', (req, res) => {
 
 router.get('/', (req, res) => {
     let users = userController.getList();
-
-
+    const name = req.query.name;
+    const lastname = req.query.lastname;
+    if(name !== undefined)
+        users = users.filter(element => element.nombre.toUpperCase().includes(name.toUpperCase()));
+    if(lastname !== undefined)
+        users = users.filter(element => element.apellidos.toUpperCase().includes(lastname.toUpperCase()));
 
     //Only return users names, last names and email, using map
     let userList = users.map((element) => {
