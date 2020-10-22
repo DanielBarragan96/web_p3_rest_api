@@ -64,6 +64,7 @@ router.get('/', (req, res) => {
     //Get parameters
     const name = req.query.name;
     const lastname = req.query.lastname;
+    const date = req.query.date;
     let page = req.query.page;
     let limit = req.query.limit;
 
@@ -73,6 +74,9 @@ router.get('/', (req, res) => {
     //Filter by lastname
     if (lastname !== undefined)
         userList = userList.filter(element => element.apellidos.toUpperCase().includes(lastname.toUpperCase()));
+    //Filter by date
+    if (date !== undefined)
+        userList = userList.filter(element => element.fecha.includes(date));
 
     //If page is defined
     let pageError = false;
