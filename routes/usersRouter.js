@@ -58,28 +58,55 @@ router.post('/', (req, res) => {
 
 router.get('/', (req, res) => {
     //Get users
-    let users = userController.getList();
-    
+    const users = userController.getList();
+    let userList = users;
+
     //Get parameters
     const name = req.query.name;
     const lastname = req.query.lastname;
-    const page = req.query.page;
-    const limit = req.query.limit;
-    
-    if(name !== undefined)
-        users = users.filter(element => element.nombre.toUpperCase().includes(name.toUpperCase()));
-    if(lastname !== undefined)
-        users = users.filter(element => element.apellidos.toUpperCase().includes(lastname.toUpperCase()));
+    let page = req.query.page;
+    let limit = req.query.limit;
 
-    //Only return users names, last names and email, using map
-    let userList = users.map((element) => {
-        return {
-            nombre: element.nombre,
-            apellidos: element.apellidos,
-            email: element.email
-        };
-    });
-    res.status(200).send(JSON.stringify(userList));
+    //Filter by name
+    if (name !== undefined)
+        userList = userList.filter(element => element.nombre.toUpperCase().includes(name.toUpperCase()));
+    //Filter by lastname
+    if (lastname !== undefined)
+        userList = userList.filter(element => element.apellidos.toUpperCase().includes(lastname.toUpperCase()));
+
+    //If page is defined
+    let pageError = false;
+    if (page !== undefined) {
+        page = parseInt(page);
+        //Default value of limit is 5
+        limit = (limit === undefined) ? 5 : parseInt(limit);
+        let index = (page - 1) * limit;
+        if (index < userList.length) {
+            //Create page of users
+            let newUser = [];
+            for (let offset = 0; offset < limit && (index + offset) < userList.length; offset++) {
+                newUser[offset] = userList[index + offset];
+            }
+            userList = newUser;
+        } else {
+            pageError = true;
+        }
+    }
+    //If there was an error with pagination
+    if (pageError) {
+        res.status(401).send("Error en paginado");
+    } else {
+        //Only return users names, last names and email, using map
+        userList = userList.map((element) => {
+            return {
+                nombre: element.nombre,
+                apellidos: element.apellidos,
+                email: element.email,
+                fecha: element.fecha
+            };
+        });
+        res.status(200).send(JSON.stringify(userList));
+    }
 })
 
 module.exports = router;
