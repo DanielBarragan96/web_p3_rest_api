@@ -5,28 +5,33 @@ const UserController = require('../controllers/usersController');
 const userController = new UserController();
 const randomize = require('randomatic');
 
-router.post('/', (req, res) => {
+function verification(body) {
     let atributos_faltantes = "";
+    //Verify that all attributes are passed
+    if (body["nombre"] == null)
+        atributos_faltantes += "Falta nombre. ";
+    if (body["apellidos"] == null)
+        atributos_faltantes += "Falta apellidos. ";
+    if (body["email"] == null)
+        atributos_faltantes += "Falta email. ";
+    if (body["password"] == null)
+        atributos_faltantes += "Falta password. ";
+    if (body["fecha"] == null)
+        atributos_faltantes += "Falta fecha. ";
+    if (body["sexo"] == null)
+        atributos_faltantes += "Falta sexo. ";
+    else if (body["sexo"] != "H" && body["sexo"] != "M") {
+        atributos_faltantes += "Sexo inválido. ";
+    }
+    return atributos_faltantes;
+}
+
+router.post('/', (req, res) => {
     //Verify that the body isn't empty
     if (req.body.constructor === Object && Object.keys(req.body).length === 0)
         res.send("Empty body");
     else {
-        //Verify that all attributes are passed
-        if (req.body["nombre"] == null)
-            atributos_faltantes += "Falta nombre. ";
-        if (req.body["apellidos"] == null)
-            atributos_faltantes += "Falta apellidos. ";
-        if (req.body["email"] == null)
-            atributos_faltantes += "Falta email. ";
-        if (req.body["password"] == null)
-            atributos_faltantes += "Falta password. ";
-        if (req.body["fecha"] == null)
-            atributos_faltantes += "Falta fecha. ";
-        if (req.body["sexo"] == null)
-            atributos_faltantes += "Falta sexo. ";
-        else if (req.body["sexo"] != "H" && req.body["sexo"] != "M") {
-            atributos_faltantes += "Sexo inválido. ";
-        }
+        let atributos_faltantes = verification(req.body);
 
         //If there are missing attributes, indicate with error code and missing attributes
         if (atributos_faltantes.length > 1) {
