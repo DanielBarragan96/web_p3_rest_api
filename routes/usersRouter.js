@@ -113,4 +113,13 @@ router.get('/', (req, res) => {
     }
 })
 
+router.get('/:email', (req, res) => {
+    let email = req.params.email;
+    let user = userController.getUserByEmail(email);
+    if (user === undefined)
+        res.status(400).send("El usuario no esta en la DB");
+    else
+        res.status(200).send(user);
+})
+
 module.exports = router;
