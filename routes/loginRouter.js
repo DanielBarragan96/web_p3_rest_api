@@ -30,8 +30,8 @@ router.post('/', (req, res) => {
                     //Update user
                     userController.updateUser(user);
                 }
-                //Return user
-                res.status(200).send(user);
+                //Return user token
+                res.set('x-user-token', user.token).status(200).send();
             }
             //Return error if user couldn't be found
             else
