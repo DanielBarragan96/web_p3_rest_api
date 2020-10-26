@@ -31,11 +31,12 @@ router.post('/', (req, res) => {
                     userController.updateUser(user);
                 }
                 //Return user token
-                res.set('x-user-token', user.token).status(200).send();
+                let jsonToken = [{'token':user.token}];
+                res.set('x-user-token', user.token).status(200).send(JSON.stringify(jsonToken));
             }
             //Return error if user couldn't be found
             else
-                res.status(401).send("User isn't in db");
+                res.status(401).send("El usuario no existe en la DB");
         }
     }
 })
