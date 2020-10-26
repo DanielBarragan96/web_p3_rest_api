@@ -18,6 +18,8 @@ function verification(body) {
         atributos_faltantes += "Falta password. ";
     if (body["fecha"] == null)
         atributos_faltantes += "Falta fecha. ";
+    if (body["uid"] == null)
+        atributos_faltantes += "Falta uid. ";
     if (body["sexo"] == null)
         atributos_faltantes += "Falta sexo. ";
     else if (body["sexo"] != "H" && body["sexo"] != "M") {
@@ -125,6 +127,23 @@ router.get('/:email', (req, res) => {
         res.status(400).send("El usuario no esta en la DB");
     else
         res.status(200).send(user);
+})
+
+router.put('/:email', (req, res) => {
+    let email = req.params.email;
+    req.body["email"] = email;
+    let atributos_faltantes = verification(req.body);
+    if (atributos_faltantes.length > 1) {
+        res.status(400).send(atributos_faltantes);
+    } else {
+        let user = userController.getUserByEmail(email);
+        if (user === undefined) {
+            res.status(400).send("El usuario no existe en la DB");
+        } else {
+            userController.updateUser(req.body);
+            res.status(200).send("Usuario actualizado");
+        }
+    }
 })
 
 module.exports = router;
