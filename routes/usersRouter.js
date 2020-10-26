@@ -138,7 +138,7 @@ router.put('/:email', (req, res) => {
     } else {
         let user = userController.getUserByEmail(email);
         if (user === undefined) {
-            res.status(400).send("El usuario no existe en la DB");
+            res.status(404).send("El usuario no existe en la DB");
         } else {
             userController.updateUser(req.body);
             res.status(200).send("Usuario actualizado");
