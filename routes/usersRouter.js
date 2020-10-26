@@ -124,7 +124,7 @@ router.get('/:email', (req, res) => {
     let email = req.params.email;
     let user = userController.getUserByEmail(email);
     if (user === undefined)
-        res.status(400).send("El usuario no esta en la DB");
+        res.status(404).send("El usuario no esta en la DB");
     else
         res.status(200).send(user);
 })
@@ -144,6 +144,15 @@ router.put('/:email', (req, res) => {
             res.status(200).send("Usuario actualizado");
         }
     }
+})
+
+router.delete('/:email', (req, res) => {
+    let email = req.params.email;
+    let user = userController.getUserByEmail(email);
+    if (user !== undefined && userController.deleteUser(user))
+        res.status(200).send("El usuario no existe en la DB");
+    else
+        res.status(404).send("Usuaio no eliminado");
 })
 
 module.exports = router;
