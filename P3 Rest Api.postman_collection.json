@@ -1,0 +1,461 @@
+{
+	"info": {
+		"_postman_id": "b9237fde-6902-4fe5-b246-48f733b32d20",
+		"name": "P3 Rest Api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST  /api/users JUAN",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "content-type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-auth-user",
+						"value": "dBhiibXnxt-10001",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"Juan\",\r\n    \"apellidos\":\"NotDoe\",\r\n    \"email\":\"notjohn2@email.com\",\r\n    \"password\":\"doej\",\r\n    \"fecha\":\"2001-10-28\",\r\n    \"sexo\":\"H\",\r\n    \"uid\":10002,\r\n    \"image\":\"https://randomuser.me/api/portraits/men/1.jpg\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/users/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST  /api/users JOHN DOE",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "content-type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-auth-user",
+						"type": "text",
+						"value": "dBhiibXnxt-10001"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"John\",\r\n    \"apellidos\": \"Doe\",\r\n    \"email\": \"john@gmail.com\",\r\n    \"password\": \"doej\",\r\n    \"fecha\": \"2000-10-28\",\r\n    \"sexo\": \"H\",\r\n    \"uid\": 10001,\r\n    \"image\": \"https://randomuser.me/api/portraits/men/0.jpg\",\r\n    \"token\": \"dBhiibXnxt-10001\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/users/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST  /api/users JUANA",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "content-type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-auth-user",
+						"type": "text",
+						"value": "dBhiibXnxt-10001"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"Juana\",\r\n    \"apellidos\":\"Perez\",\r\n    \"email\":\"juana@gmail.com\",\r\n    \"password\":\"juana\",\r\n    \"fecha\":\"2001-10-28\",\r\n    \"sexo\":\"M\",\r\n    \"uid\":10003,\r\n    \"image\":\"https://randomuser.me/api/portraits/women/1.jpg\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/users/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /api/login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "content-type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-auth-user",
+						"value": "dBhiibXnxt-10001",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"john@gmail.com\",\r\n    \"password\":\"doej\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/login/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /api/users",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "content-type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-auth-user",
+						"value": "dBhiibXnxt-10001",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/users/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /api/users email",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "content-type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-auth-user",
+						"type": "text",
+						"value": "dBhiibXnxt-10001"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/users/:email",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						":email"
+					],
+					"variable": [
+						{
+							"key": "email",
+							"value": "john@gmail.com"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE /api/users email",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "content-type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-auth-user",
+						"type": "text",
+						"value": "dBhiibXnxt-10001"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/users/:email",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						":email"
+					],
+					"variable": [
+						{
+							"key": "email",
+							"value": "notjohn2@email.com"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /api/users email",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "content-type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-auth-user",
+						"type": "text",
+						"value": "dBhiibXnxt-10001"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"NewJohn\",\r\n    \"apellidos\":\"Doe\",\r\n    \"password\":\"doej\",\r\n    \"fecha\":\"2001-10-28\",\r\n    \"sexo\":\"H\",\r\n    \"uid\":10001,\r\n    \"image\":\"https://randomuser.me/api/portraits/men/4.jpg\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/users/:email",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						":email"
+					],
+					"variable": [
+						{
+							"key": "email",
+							"value": "john@gmail.com"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /api/users param name",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "content-type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-auth-user",
+						"type": "text",
+						"value": "dBhiibXnxt-10001"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/users/?name=John&lastname=Doe",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						""
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "John"
+						},
+						{
+							"key": "lastname",
+							"value": "Doe"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /api/users param page",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "content-type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-auth-user",
+						"type": "text",
+						"value": "dBhiibXnxt-10001"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/users/?page=1&limit=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						""
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /api/users param date",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "content-type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "x-auth-user",
+						"type": "text",
+						"value": "dBhiibXnxt-10001"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/users/?date=2000-10-28",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						""
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": "2000-10-28"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
