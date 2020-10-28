@@ -160,9 +160,9 @@ router.delete('/:email', (req, res) => {
     let email = req.params.email;
     let user = userController.getUserByEmail(email);
     if (user !== undefined && userController.deleteUser(user))
-        res.status(200).send("El usuario no existe en la DB");
+        res.status(200).send("Usuario eliminado en la DB");
     else
-        res.status(404).send("Usuaio no eliminado");
+        res.status(404).send("El usuario no existe en la DB");
 })
 
 module.exports = router;
