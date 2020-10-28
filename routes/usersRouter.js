@@ -122,7 +122,10 @@ router.get('/', (req, res) => {
                 nombre: element.nombre,
                 apellidos: element.apellidos,
                 email: element.email,
-                fecha: element.fecha
+                fecha: element.fecha,
+                sexo: element.sexo,
+                uid: element.uid,
+                image: element.image
             };
         });
         res.status(200).send(JSON.stringify(userList));
