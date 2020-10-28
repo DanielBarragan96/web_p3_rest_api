@@ -127,7 +127,6 @@ router.get('/', (req, res) => {
         });
         res.status(200).send(JSON.stringify(userList));
     }
-    //TODO save fs
     saveDBwithFS()
 })
 
