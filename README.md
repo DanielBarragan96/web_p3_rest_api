@@ -1,5 +1,9 @@
 # web_p3_rest_api
 
+[Video](https://www.youtube.com/watch?v=aqO361LrBgU)
+[Reporte](https://docs.google.com/document/d/14JRFBeBtVgzVNXt1Pu9upitsbeElSj3xZGBg3RzN2KQ/)
+
+
 En esta práctica concluiremos la aplicación que hemos estado desarrollando en las demás
 prácticas sobre la gestión de usuarios. Esta vez toca desarrollar el back-end, crearemos con
 node nuestra REST API que permitirá registrar, modificar, editar, consultar y borrar a los
