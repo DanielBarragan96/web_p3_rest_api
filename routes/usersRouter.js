@@ -130,7 +130,7 @@ router.get('/', (req, res) => {
         });
         res.status(200).send(JSON.stringify(userList));
     }
-    saveDBwithFS()
+    saveDBwithFS();
 })
 
 router.get('/:email', (req, res) => {
@@ -157,6 +157,7 @@ router.put('/:email', (req, res) => {
             res.status(200).send("Usuario actualizado");
         }
     }
+    saveDBwithFS();
 })
 
 router.delete('/:email', (req, res) => {
@@ -166,6 +167,7 @@ router.delete('/:email', (req, res) => {
         res.status(200).send("Usuario eliminado en la DB");
     else
         res.status(404).send("El usuario no existe en la DB");
+    saveDBwithFS();
 })
 
 module.exports = router;
