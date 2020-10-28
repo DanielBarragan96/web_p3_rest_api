@@ -35,7 +35,8 @@ app.get('/', (req, res) => {
     res.send('Users app práctica 3');
 })
 
-app.use(authentication);
+app.use(express.static('public'));
+// app.use(authentication);
 
 //Router
 const usersRouter = require('./routes/usersRouter');

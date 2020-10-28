@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>P4</title>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <style>
+      .card {
+        float: left;
+        width: 10rem;
+        padding: 0.5rem;
+        margin-bottom: 1rem;
+        margin-right: 0.3rem;
+        border: 0;
+      }
+
+      .card > img {
+        margin-bottom: 0.5rem;
+        width: 128;
+        height: 128;
+        max-width: 128;
+      }
+
+      .card-text {
+        font-size: 1rem;
+        color: black;
+      }
+
+      .row {
+        padding-top: 3%;
+        padding-bottom: 3%;
+        padding-left: 3%;
+      }
+      .success {
+        background-color: cadetblue;
+        color: white;
+      }
+      .error {
+        background-color: red;
+        color: white;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="row" id="info"></div>
+    <script>
+      let data = [
+        {
+          name: "John",
+          last_name: "Doe",
+          email: "john@gmail.com",
+          password: "doej",
+          date: "2000-10-28",
+          gender: "H",
+          uid: 10001,
+          image: "https://randomuser.me/api/portraits/men/0.jpg",
+          token: "dBhiibXnxt-10001",
+        },
+      ];
+      function userToHTML(user) {
+        let element = `<div class="card text-left">`;
+        element += `<img class="mx-auto" src="${user.image}" >`;
+        element += `<h4 class="title">${user.name} ${user.last_name}</h4>`;
+        element += `<p class="card-text">${user.gender}: ${user.email}</p>`;
+        element += `<p>${user.date}</p>`;
+        element += `<p>${user.uid}</p>`;
+        element += `</div>`;
+        return element;
+      }
+
+      function userListToHTML(userList) {
+        document.getElementById("info").innerHTML = "";
+        for (let user of userList) {
+          console.log(user.name);
+          let userS = userToHTML(user);
+          // add content to html
+          document.getElementById("info").innerHTML += userS;
+        }
+      }
+      //   let jsonParsed = JSON.parse(data);
+      userListToHTML(data);
+    </script>
+  </body>
+</html>
