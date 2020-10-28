@@ -45,5 +45,5 @@ const loginRouter = require('./routes/loginRouter');
 app.use('/api/login/', loginRouter);
 
 app.listen(PORT, () => {
-    console.log(`Example app listening at http://localhost:${PORT}`)
+    console.log(`Example app listening at http://localhost:${PORT}`);
 })
