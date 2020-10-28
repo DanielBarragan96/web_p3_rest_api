@@ -4,6 +4,15 @@ const router = express.Router();
 const UserController = require('../controllers/usersController');
 const userController = new UserController();
 const randomize = require('randomatic');
+var fs = require('fs');
+
+
+function saveDBwithFS() {
+    fs.writeFile('./data/users.json', JSON.stringify(userController.getList()), function (err) {
+        if (err) throw err;
+        else console.log('saveDBwithFS');
+    });
+}
 
 function verification(body) {
     let atributos_faltantes = "";
@@ -118,6 +127,8 @@ router.get('/', (req, res) => {
         });
         res.status(200).send(JSON.stringify(userList));
     }
+    //TODO save fs
+    saveDBwithFS()
 })
 
 router.get('/:email', (req, res) => {

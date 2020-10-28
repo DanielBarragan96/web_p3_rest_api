@@ -1,13 +1,21 @@
-[
-    {
-        "nombre":"John",
-        "apellidos":"Doe",
-        "email":"john@gmail.com",
-        "password":"doej",
-        "fecha":"2000-10-28",
-        "sexo":"H",
-        "uid":10001,
-        "image":"https://randomuser.me/api/portraits/men/0.jpg",
-        "token":"dBhiibXnxt-10001"
-    }
-]
+[{
+    "nombre": "John",
+    "apellidos": "Doe",
+    "email": "john@gmail.com",
+    "password": "doej",
+    "fecha": "2000-10-28",
+    "sexo": "H",
+    "uid": 10001,
+    "image": "https://randomuser.me/api/portraits/men/0.jpg",
+    "token": "dBhiibXnxt-10001"
+}, {
+    "nombre": "Juan",
+    "apellidos": "NotDoe",
+    "email": "notjohn2@email.com",
+    "password": "doej",
+    "fecha": "2001-10-28",
+    "sexo": "H",
+    "uid": 10002,
+    "image": "https://randomuser.me/api/portraits/men/1.jpg",
+    "token": "fpYyVjzpi1-10002"
+}]
